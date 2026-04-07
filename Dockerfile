@@ -15,7 +15,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-ARG GO_VERSION=1.25.8
+ARG GO_VERSION=1.22.12
 ARG XX_VERSION=1.9.0
 ARG GOLANGCI_LINT_VERSION=v2.8.0
 ARG ADDLICENSE_VERSION=v1.0.0
@@ -33,7 +33,7 @@ FROM crazymax/osxcross:15.5-alpine AS osxcross
 FROM golangci/golangci-lint:${GOLANGCI_LINT_VERSION}-alpine AS golangci-lint
 FROM ghcr.io/google/addlicense:${ADDLICENSE_VERSION} AS addlicense
 
-FROM --platform=${BUILDPLATFORM} golang:${GO_VERSION}-alpine3.22 AS base
+FROM --platform=${BUILDPLATFORM} golang:${GO_VERSION}-alpine AS base
 COPY --from=xx / /
 RUN apk add --no-cache \
       clang \
